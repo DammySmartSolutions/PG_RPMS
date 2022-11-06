@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a41b6405471409aaaabd42e481b91f9" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="RPMSModel.AuditLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPMSModel.tblSchoolDetails" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPMSModel.tblUsers" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPMSModel.tblFaculty" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblFacultyType" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblFacultyTemp" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblDeptTemp" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblMajor" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblCourses" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblCoursesTemp" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblMajorTemp" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblGradingSystem" Width="1.5" PointX="9.375" PointY="8.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblGrading" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblLevel" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblNation" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblState" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblLocalGovt" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblMaritalStatus" Width="1.5" PointX="11.375" PointY="10.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblSession" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblStaffRank" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblPosition" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblSemester" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblSessionSemester" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblRoles" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblUser" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblConfig" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblStaffRole" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblAssignCoursesCoordinator" Width="1.5" PointX="9.375" PointY="14.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblSecurityQuestionList" Width="1.5" PointX="15.375" PointY="3.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblUserSecurityAnswer" Width="1.5" PointX="3.375" PointY="15.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblStatus" Width="1.5" PointX="15.375" PointY="6.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblStudentDisciplineLeave" Width="1.5" PointX="15.375" PointY="9.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblStudentCourseExempt" Width="1.5" PointX="11.375" PointY="15.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblAuditTray" Width="1.5" PointX="15.375" PointY="13.75" />
+        <EntityTypeShape EntityType="RPMSModel.tblDept" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

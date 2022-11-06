@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RPMSModelStoreContainer" CdmEntityContainer="RPMSEntities">
+    <EntitySetMapping Name="AuditLog">
+      <EntityTypeMapping TypeName="RPMSModel.AuditLog">
+        <MappingFragment StoreEntitySet="AuditLog">
+          <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+          <ScalarProperty Name="AuditDateTime" ColumnName="AuditDateTime" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="IDName" ColumnName="IDName" />
+          <ScalarProperty Name="OldData" ColumnName="OldData" />
+          <ScalarProperty Name="NewData" ColumnName="NewData" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSchoolDetails">
+      <EntityTypeMapping TypeName="RPMSModel.tblSchoolDetails">
+        <MappingFragment StoreEntitySet="tblSchoolDetails">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="RPMSModel.tblUsers">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UpdatePassword" ColumnName="UpdatePassword" />
+          <ScalarProperty Name="Activated" ColumnName="Activated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFaculty">
+      <EntityTypeMapping TypeName="RPMSModel.tblFaculty">
+        <MappingFragment StoreEntitySet="tblFaculty">
+          <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFacultyType">
+      <EntityTypeMapping TypeName="RPMSModel.tblFacultyType">
+        <MappingFragment StoreEntitySet="tblFacultyType">
+          <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+          <ScalarProperty Name="FacultyTypeID" ColumnName="FacultyTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFacultyTemp">
+      <EntityTypeMapping TypeName="RPMSModel.tblFacultyTemp">
+        <MappingFragment StoreEntitySet="tblFacultyTemp">
+          <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDeptTemp">
+      <EntityTypeMapping TypeName="RPMSModel.tblDeptTemp">
+        <MappingFragment StoreEntitySet="tblDeptTemp">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMajor">
+      <EntityTypeMapping TypeName="RPMSModel.tblMajor">
+        <MappingFragment StoreEntitySet="tblMajor">
+          <ScalarProperty Name="MajorID" ColumnName="MajorID" />
+          <ScalarProperty Name="DegreeAwarded" ColumnName="DegreeAwarded" />
+          <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+          <ScalarProperty Name="MajorCode" ColumnName="MajorCode" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCourses">
+      <EntityTypeMapping TypeName="RPMSModel.tblCourses">
+        <MappingFragment StoreEntitySet="tblCourses">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCoursesTemp">
+      <EntityTypeMapping TypeName="RPMSModel.tblCoursesTemp">
+        <MappingFragment StoreEntitySet="tblCoursesTemp">
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMajorTemp">
+      <EntityTypeMapping TypeName="RPMSModel.tblMajorTemp">
+        <MappingFragment StoreEntitySet="tblMajorTemp">
+          <ScalarProperty Name="DegreeAwarded" ColumnName="DegreeAwarded" />
+          <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+          <ScalarProperty Name="MajorCode" ColumnName="MajorCode" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGradingSystem">
+      <EntityTypeMapping TypeName="RPMSModel.tblGradingSystem">
+        <MappingFragment StoreEntitySet="tblGradingSystem">
+          <ScalarProperty Name="GradingSystemID" ColumnName="GradingSystemID" />
+          <ScalarProperty Name="GradingSystem" ColumnName="GradingSystem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGrading">
+      <EntityTypeMapping TypeName="RPMSModel.tblGrading">
+        <MappingFragment StoreEntitySet="tblGrading">
+          <ScalarProperty Name="GradePassed" ColumnName="GradePassed" />
+          <ScalarProperty Name="GradeLetter" ColumnName="GradeLetter" />
+          <ScalarProperty Name="GradePoint" ColumnName="GradePoint" />
+          <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+          <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+          <ScalarProperty Name="GradingSystemTypeID" ColumnName="GradingSystemTypeID" />
+          <ScalarProperty Name="GradingSystemType" ColumnName="GradingSystemType" />
+          <ScalarProperty Name="GradingID" ColumnName="GradingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLevel">
+      <EntityTypeMapping TypeName="RPMSModel.tblLevel">
+        <MappingFragment StoreEntitySet="tblLevel">
+          <ScalarProperty Name="WillReturn" ColumnName="WillReturn" />
+          <ScalarProperty Name="IsAbsent" ColumnName="IsAbsent" />
+          <ScalarProperty Name="LevelOrder" ColumnName="LevelOrder" />
+          <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNation">
+      <EntityTypeMapping TypeName="RPMSModel.tblNation">
+        <MappingFragment StoreEntitySet="tblNation">
+          <ScalarProperty Name="NationCode" ColumnName="NationCode" />
+          <ScalarProperty Name="Nation" ColumnName="Nation" />
+          <ScalarProperty Name="NationID" ColumnName="NationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblState">
+      <EntityTypeMapping TypeName="RPMSModel.tblState">
+        <MappingFragment StoreEntitySet="tblState">
+          <ScalarProperty Name="NationName" ColumnName="NationName" />
+          <ScalarProperty Name="Statename" ColumnName="Statename" />
+          <ScalarProperty Name="NationCode" ColumnName="NationCode" />
+          <ScalarProperty Name="NationId" ColumnName="NationId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLocalGovt">
+      <EntityTypeMapping TypeName="RPMSModel.tblLocalGovt">
+        <MappingFragment StoreEntitySet="tblLocalGovt">
+          <ScalarProperty Name="NationName" ColumnName="NationName" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="LocalGovt" ColumnName="LocalGovt" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="LocalGovtID" ColumnName="LocalGovtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMaritalStatus">
+      <EntityTypeMapping TypeName="RPMSModel.tblMaritalStatus">
+        <MappingFragment StoreEntitySet="tblMaritalStatus">
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="MaritalID" ColumnName="MaritalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSession">
+      <EntityTypeMapping TypeName="RPMSModel.tblSession">
+        <MappingFragment StoreEntitySet="tblSession">
+          <ScalarProperty Name="SessionEndDate" ColumnName="SessionEndDate" />
+          <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+          <ScalarProperty Name="Session" ColumnName="Session" />
+          <ScalarProperty Name="SessionOrder" ColumnName="SessionOrder" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStaffRank">
+      <EntityTypeMapping TypeName="RPMSModel.tblStaffRank">
+        <MappingFragment StoreEntitySet="tblStaffRank">
+          <ScalarProperty Name="StaffRank" ColumnName="StaffRank" />
+          <ScalarProperty Name="StaffRankID" ColumnName="StaffRankID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPosition">
+      <EntityTypeMapping TypeName="RPMSModel.tblPosition">
+        <MappingFragment StoreEntitySet="tblPosition">
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSemester">
+      <EntityTypeMapping TypeName="RPMSModel.tblSemester">
+        <MappingFragment StoreEntitySet="tblSemester">
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSessionSemester">
+      <EntityTypeMapping TypeName="RPMSModel.tblSessionSemester">
+        <MappingFragment StoreEntitySet="tblSessionSemester">
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Session" ColumnName="Session" />
+          <ScalarProperty Name="SessionSemester" ColumnName="SessionSemester" />
+          <ScalarProperty Name="SessionSemesterID" ColumnName="SessionSemesterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="RPMSModel.tblRoles">
+        <MappingFragment StoreEntitySet="tblRoles">
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="RPMSModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="SecurityQueCreated" ColumnName="SecurityQueCreated" />
+          <ScalarProperty Name="LinkActivated" ColumnName="LinkActivated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LinkExpirationDate" ColumnName="LinkExpirationDate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="UpdatePassword" ColumnName="UpdatePassword" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblConfig">
+      <EntityTypeMapping TypeName="RPMSModel.tblConfig">
+        <MappingFragment StoreEntitySet="tblConfig">
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+          <ScalarProperty Name="BodyHtml" ColumnName="BodyHtml" />
+          <ScalarProperty Name="EnableSSL" ColumnName="EnableSSL" />
+          <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="EmailHost" ColumnName="EmailHost" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStaffRole">
+      <EntityTypeMapping TypeName="RPMSModel.tblStaffRole">
+        <MappingFragment StoreEntitySet="tblStaffRole">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+          <ScalarProperty Name="StaffRoleID" ColumnName="StaffRoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAssignCoursesCoordinator">
+      <EntityTypeMapping TypeName="RPMSModel.tblAssignCoursesCoordinator">
+        <MappingFragment StoreEntitySet="tblAssignCoursesCoordinator">
+          <ScalarProperty Name="SemesterSession" ColumnName="SemesterSession" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+          <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+          <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+          <ScalarProperty Name="AssignCourseID" ColumnName="AssignCourseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSecurityQuestionList">
+      <EntityTypeMapping TypeName="RPMSModel.tblSecurityQuestionList">
+        <MappingFragment StoreEntitySet="tblSecurityQuestionList">
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="SecurityQuestionID" ColumnName="SecurityQuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserSecurityAnswer">
+      <EntityTypeMapping TypeName="RPMSModel.tblUserSecurityAnswer">
+        <MappingFragment StoreEntitySet="tblUserSecurityAnswer">
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+          <ScalarProperty Name="SecurityQue3" ColumnName="SecurityQue3" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="SecurityQue2" ColumnName="SecurityQue2" />
+          <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+          <ScalarProperty Name="SecurityQue1" ColumnName="SecurityQue1" />
+          <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+          <ScalarProperty Name="UserSecurityAnswer" ColumnName="UserSecurityAnswer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStatus">
+      <EntityTypeMapping TypeName="RPMSModel.tblStatus">
+        <MappingFragment StoreEntitySet="tblStatus">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStudentDisciplineLeave">
+      <EntityTypeMapping TypeName="RPMSModel.tblStudentDisciplineLeave">
+        <MappingFragment StoreEntitySet="tblStudentDisciplineLeave">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="SessSemester" ColumnName="SessSemester" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MatricNumber" ColumnName="MatricNumber" />
+          <ScalarProperty Name="DiscLeaveID" ColumnName="DiscLeaveID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStudentCourseExempt">
+      <EntityTypeMapping TypeName="RPMSModel.tblStudentCourseExempt">
+        <MappingFragment StoreEntitySet="tblStudentCourseExempt">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="MatricNumber" ColumnName="MatricNumber" />
+          <ScalarProperty Name="StudCourseExemptID" ColumnName="StudCourseExemptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAuditTray">
+      <EntityTypeMapping TypeName="RPMSModel.tblAuditTray">
+        <MappingFragment StoreEntitySet="tblAuditTray">
+          <ScalarProperty Name="Desccription" ColumnName="Desccription" />
+          <ScalarProperty Name="DatePerformed" ColumnName="DatePerformed" />
+          <ScalarProperty Name="ActionPerformed" ColumnName="ActionPerformed" />
+          <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+          <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDept">
+      <EntityTypeMapping TypeName="RPMSModel.tblDept">
+        <MappingFragment StoreEntitySet="tblDept">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

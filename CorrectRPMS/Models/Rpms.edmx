@@ -1,0 +1,1333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RPMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditDateTime" Type="datetime" />
+          <Property Name="TableName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Action" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDName" Type="varchar" MaxLength="100" />
+          <Property Name="OldData" Type="xml" />
+          <Property Name="NewData" Type="xml" />
+        </EntityType>
+        <EntityType Name="tblAssignCoursesCoordinator">
+          <Key>
+            <PropertyRef Name="AssignCourseID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="AssignCourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SemesterSession" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAuditTray">
+          <Key>
+            <PropertyRef Name="AuditID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionPerformed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatePerformed" Type="datetime" Nullable="false" />
+          <Property Name="Desccription" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailHost" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="EnableSSL" Type="bit" Nullable="false" />
+          <Property Name="BodyHtml" Type="bit" Nullable="false" />
+          <Property Name="ConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCourses">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RPMS.dbo.tblCoursesTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblCoursesTemp">
+          <Key>
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="CourseCode" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDept">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RPMS.dbo.tblDeptTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblDeptTemp">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+            <PropertyRef Name="DeptName" />
+            <PropertyRef Name="FacultyCode" />
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="FacultyType" />
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="DeptCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFaculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RPMS.dbo.tblFacultyTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblFacultyTemp">
+          <Key>
+            <PropertyRef Name="FacultyCode" />
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="FacultyType" />
+          </Key>
+          <Property Name="FacultyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFacultyType">
+          <Key>
+            <PropertyRef Name="FacultyTypeID" />
+          </Key>
+          <Property Name="FacultyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGrading">
+          <Key>
+            <PropertyRef Name="GradingID" />
+          </Key>
+          <Property Name="GradingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradingSystemType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GradingSystemTypeID" Type="int" Nullable="false" />
+          <Property Name="MinScore" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MaxScore" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="GradePoint" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="GradeLetter" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="GradePassed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGradingSystem">
+          <Key>
+            <PropertyRef Name="GradingSystemID" />
+          </Key>
+          <Property Name="GradingSystem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GradingSystemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLevel">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LevelOrder" Type="int" Nullable="false" />
+          <Property Name="IsAbsent" Type="bit" Nullable="false" />
+          <Property Name="WillReturn" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLocalGovt">
+          <Key>
+            <PropertyRef Name="LocalGovtID" />
+          </Key>
+          <Property Name="LocalGovtID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="LocalGovt" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NationName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMajor">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="MajorID" />
+          </Key>
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="MajorCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MajorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DegreeAwarded" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MajorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RPMS.dbo.tblMajorTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblMajorTemp">
+          <Key>
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="MajorCode" />
+            <PropertyRef Name="MajorName" />
+            <PropertyRef Name="DegreeAwarded" />
+          </Key>
+          <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="MajorCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MajorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DegreeAwarded" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMaritalStatus">
+          <Key>
+            <PropertyRef Name="MaritalID" />
+          </Key>
+          <Property Name="MaritalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaritalStatus" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNation">
+          <Key>
+            <PropertyRef Name="NationID" />
+          </Key>
+          <Property Name="NationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NationCode" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPosition">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roles" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSchoolDetails">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblSecurityQuestionList">
+          <Key>
+            <PropertyRef Name="SecurityQuestionID" />
+          </Key>
+          <Property Name="SecurityQuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSemester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSession">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionOrder" Type="int" Nullable="false" />
+          <Property Name="Session" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SessionStartDate" Type="date" Nullable="false" />
+          <Property Name="SessionEndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSessionSemester">
+          <Key>
+            <PropertyRef Name="SessionSemesterID" />
+          </Key>
+          <Property Name="SessionSemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionSemester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Session" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStaffRank">
+          <Key>
+            <PropertyRef Name="StaffRankID" />
+          </Key>
+          <Property Name="StaffRankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffRank" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStaffRole">
+          <Key>
+            <PropertyRef Name="StaffRoleID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="StaffRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NationId" Type="int" Nullable="false" />
+          <Property Name="NationCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Statename" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NationName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStudentCourseExempt">
+          <Key>
+            <PropertyRef Name="StudCourseExemptID" />
+            <PropertyRef Name="MatricNumber" />
+          </Key>
+          <Property Name="StudCourseExemptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatricNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblStudentDisciplineLeave">
+          <Key>
+            <PropertyRef Name="DiscLeaveID" />
+            <PropertyRef Name="MatricNumber" />
+          </Key>
+          <Property Name="DiscLeaveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatricNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SessSemester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="varchar(max)" Nullable="false" />
+          <Property Name="Password" Type="varchar(max)" Nullable="false" />
+          <Property Name="UpdatePassword" Type="bit" Nullable="false" />
+          <Property Name="Faculty" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="LinkExpirationDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LinkActivated" Type="bit" />
+          <Property Name="SecurityQueCreated" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UpdatePassword" Type="bit" Nullable="false" />
+          <Property Name="Activated" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserSecurityAnswer">
+          <Key>
+            <PropertyRef Name="UserSecurityAnswer" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="UserSecurityAnswer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecurityQue1" Type="varchar(max)" Nullable="false" />
+          <Property Name="Answer1" Type="varchar(max)" Nullable="false" />
+          <Property Name="SecurityQue2" Type="varchar(max)" Nullable="false" />
+          <Property Name="Answer2" Type="varchar(max)" Nullable="false" />
+          <Property Name="SecurityQue3" Type="varchar(max)" Nullable="false" />
+          <Property Name="Answer3" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="RPMSModelStoreContainer">
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAssignCoursesCoordinator" EntityType="Self.tblAssignCoursesCoordinator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAuditTray" EntityType="Self.tblAuditTray" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCourses" EntityType="Self.tblCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDept" EntityType="Self.tblDept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFaculty" EntityType="Self.tblFaculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFacultyType" EntityType="Self.tblFacultyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGrading" EntityType="Self.tblGrading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGradingSystem" EntityType="Self.tblGradingSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevel" EntityType="Self.tblLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocalGovt" EntityType="Self.tblLocalGovt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMajor" EntityType="Self.tblMajor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMaritalStatus" EntityType="Self.tblMaritalStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNation" EntityType="Self.tblNation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPosition" EntityType="Self.tblPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSchoolDetails" EntityType="Self.tblSchoolDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSecurityQuestionList" EntityType="Self.tblSecurityQuestionList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSemester" EntityType="Self.tblSemester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSession" EntityType="Self.tblSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSessionSemester" EntityType="Self.tblSessionSemester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStaffRank" EntityType="Self.tblStaffRank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStaffRole" EntityType="Self.tblStaffRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudentCourseExempt" EntityType="Self.tblStudentCourseExempt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudentDisciplineLeave" EntityType="Self.tblStudentDisciplineLeave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserSecurityAnswer" EntityType="Self.tblUserSecurityAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCoursesTemp" EntityType="Self.tblCoursesTemp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblCoursesTemp].[FacultyName] AS [FacultyName], 
+    [tblCoursesTemp].[DepartmentName] AS [DepartmentName], 
+    [tblCoursesTemp].[DepartmentCode] AS [DepartmentCode], 
+    [tblCoursesTemp].[DeptID] AS [DeptID], 
+    [tblCoursesTemp].[CourseCode] AS [CourseCode], 
+    [tblCoursesTemp].[CourseName] AS [CourseName]
+    FROM [dbo].[tblCoursesTemp] AS [tblCoursesTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblDeptTemp" EntityType="Self.tblDeptTemp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblDeptTemp].[DeptCode] AS [DeptCode], 
+    [tblDeptTemp].[DeptName] AS [DeptName], 
+    [tblDeptTemp].[FacultyCode] AS [FacultyCode], 
+    [tblDeptTemp].[FacultyName] AS [FacultyName], 
+    [tblDeptTemp].[FacultyType] AS [FacultyType], 
+    [tblDeptTemp].[FacultyID] AS [FacultyID]
+    FROM [dbo].[tblDeptTemp] AS [tblDeptTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblFacultyTemp" EntityType="Self.tblFacultyTemp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblFacultyTemp].[FacultyCode] AS [FacultyCode], 
+    [tblFacultyTemp].[FacultyName] AS [FacultyName], 
+    [tblFacultyTemp].[FacultyType] AS [FacultyType]
+    FROM [dbo].[tblFacultyTemp] AS [tblFacultyTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblMajorTemp" EntityType="Self.tblMajorTemp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblMajorTemp].[FacultyName] AS [FacultyName], 
+    [tblMajorTemp].[DepartmentName] AS [DepartmentName], 
+    [tblMajorTemp].[DepartmentCode] AS [DepartmentCode], 
+    [tblMajorTemp].[DeptID] AS [DeptID], 
+    [tblMajorTemp].[MajorCode] AS [MajorCode], 
+    [tblMajorTemp].[MajorName] AS [MajorName], 
+    [tblMajorTemp].[DegreeAwarded] AS [DegreeAwarded]
+    FROM [dbo].[tblMajorTemp] AS [tblMajorTemp]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditDateTime" Type="DateTime" Precision="3" />
+          <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OldData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSchoolDetails">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdatePassword" Type="Boolean" Nullable="false" />
+          <Property Name="Activated" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="RPMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" />
+          <EntitySet Name="tblSchoolDetails" EntityType="Self.tblSchoolDetails" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" />
+          <EntitySet Name="tblFaculty" EntityType="RPMSModel.tblFaculty" />
+          <EntitySet Name="tblFacultyType" EntityType="RPMSModel.tblFacultyType" />
+          <EntitySet Name="tblFacultyTemp" EntityType="RPMSModel.tblFacultyTemp" />
+          <EntitySet Name="tblDeptTemp" EntityType="RPMSModel.tblDeptTemp" />
+          <EntitySet Name="tblMajor" EntityType="RPMSModel.tblMajor" />
+          <EntitySet Name="tblCourses" EntityType="RPMSModel.tblCourses" />
+          <EntitySet Name="tblCoursesTemp" EntityType="RPMSModel.tblCoursesTemp" />
+          <EntitySet Name="tblMajorTemp" EntityType="RPMSModel.tblMajorTemp" />
+          <EntitySet Name="tblGradingSystem" EntityType="RPMSModel.tblGradingSystem" />
+          <EntitySet Name="tblGrading" EntityType="RPMSModel.tblGrading" />
+          <EntitySet Name="tblLevel" EntityType="RPMSModel.tblLevel" />
+          <EntitySet Name="tblNation" EntityType="RPMSModel.tblNation" />
+          <EntitySet Name="tblState" EntityType="RPMSModel.tblState" />
+          <EntitySet Name="tblLocalGovt" EntityType="RPMSModel.tblLocalGovt" />
+          <EntitySet Name="tblMaritalStatus" EntityType="RPMSModel.tblMaritalStatus" />
+          <EntitySet Name="tblSession" EntityType="RPMSModel.tblSession" />
+          <EntitySet Name="tblStaffRank" EntityType="RPMSModel.tblStaffRank" />
+          <EntitySet Name="tblPosition" EntityType="RPMSModel.tblPosition" />
+          <EntitySet Name="tblSemester" EntityType="RPMSModel.tblSemester" />
+          <EntitySet Name="tblSessionSemester" EntityType="RPMSModel.tblSessionSemester" />
+          <EntitySet Name="tblRoles" EntityType="RPMSModel.tblRoles" />
+          <EntitySet Name="tblUser" EntityType="RPMSModel.tblUser" />
+          <EntitySet Name="tblConfig" EntityType="RPMSModel.tblConfig" />
+          <EntitySet Name="tblStaffRole" EntityType="RPMSModel.tblStaffRole" />
+          <EntitySet Name="tblAssignCoursesCoordinator" EntityType="RPMSModel.tblAssignCoursesCoordinator" />
+          <EntitySet Name="tblSecurityQuestionList" EntityType="RPMSModel.tblSecurityQuestionList" />
+          <EntitySet Name="tblUserSecurityAnswer" EntityType="RPMSModel.tblUserSecurityAnswer" />
+          <EntitySet Name="tblStatus" EntityType="RPMSModel.tblStatus" />
+          <EntitySet Name="tblStudentDisciplineLeave" EntityType="RPMSModel.tblStudentDisciplineLeave" />
+          <EntitySet Name="tblStudentCourseExempt" EntityType="RPMSModel.tblStudentCourseExempt" />
+          <EntitySet Name="tblAuditTray" EntityType="RPMSModel.tblAuditTray" />
+          <EntitySet Name="tblDept" EntityType="RPMSModel.tblDept" />
+        </EntityContainer>
+        <EntityType Name="tblFaculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblFacultyType">
+          <Key>
+            <PropertyRef Name="FacultyTypeID" />
+          </Key>
+          <Property Name="FacultyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblFacultyTemp">
+          <Key>
+            <PropertyRef Name="FacultyCode" />
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="FacultyType" />
+          </Key>
+          <Property Name="FacultyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblDeptTemp">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+            <PropertyRef Name="DeptName" />
+            <PropertyRef Name="FacultyCode" />
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="FacultyType" />
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMajor">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="MajorID" />
+          </Key>
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="MajorCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MajorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DegreeAwarded" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MajorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblCourses">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblCoursesTemp">
+          <Key>
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="CourseCode" />
+            <PropertyRef Name="CourseName" />
+          </Key>
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblMajorTemp">
+          <Key>
+            <PropertyRef Name="FacultyName" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="MajorCode" />
+            <PropertyRef Name="MajorName" />
+            <PropertyRef Name="DegreeAwarded" />
+          </Key>
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="MajorCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MajorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DegreeAwarded" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblGradingSystem">
+          <Key>
+            <PropertyRef Name="GradingSystemID" />
+          </Key>
+          <Property Name="GradingSystem" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GradingSystemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblGrading">
+          <Key>
+            <PropertyRef Name="GradingID" />
+          </Key>
+          <Property Name="GradingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradingSystemType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GradingSystemTypeID" Type="Int32" Nullable="false" />
+          <Property Name="MinScore" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MaxScore" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GradePoint" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GradeLetter" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GradePassed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLevel">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FullDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LevelOrder" Type="Int32" Nullable="false" />
+          <Property Name="IsAbsent" Type="Boolean" Nullable="false" />
+          <Property Name="WillReturn" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNation">
+          <Key>
+            <PropertyRef Name="NationID" />
+          </Key>
+          <Property Name="NationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NationCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NationId" Type="Int32" Nullable="false" />
+          <Property Name="NationCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Statename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblLocalGovt">
+          <Key>
+            <PropertyRef Name="LocalGovtID" />
+          </Key>
+          <Property Name="LocalGovtID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="LocalGovt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblMaritalStatus">
+          <Key>
+            <PropertyRef Name="MaritalID" />
+          </Key>
+          <Property Name="MaritalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaritalStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSession">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionOrder" Type="Int32" Nullable="false" />
+          <Property Name="Session" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SessionStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SessionEndDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblStaffRank">
+          <Key>
+            <PropertyRef Name="StaffRankID" />
+          </Key>
+          <Property Name="StaffRankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffRank" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblPosition">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSemester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSessionSemester">
+          <Key>
+            <PropertyRef Name="SessionSemesterID" />
+          </Key>
+          <Property Name="SessionSemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionSemester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Session" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roles" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="StaffID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Sex" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatePassword" Type="Boolean" Nullable="false" />
+          <Property Name="Faculty" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="LinkExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinkActivated" Type="Boolean" />
+          <Property Name="SecurityQueCreated" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailHost" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="EnableSSL" Type="Boolean" Nullable="false" />
+          <Property Name="BodyHtml" Type="Boolean" Nullable="false" />
+          <Property Name="ConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblStaffRole">
+          <Key>
+            <PropertyRef Name="StaffRoleID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="StaffRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblAssignCoursesCoordinator">
+          <Key>
+            <PropertyRef Name="AssignCourseID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="AssignCourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterSession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblSecurityQuestionList">
+          <Key>
+            <PropertyRef Name="SecurityQuestionID" />
+          </Key>
+          <Property Name="SecurityQuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUserSecurityAnswer">
+          <Key>
+            <PropertyRef Name="UserSecurityAnswer" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="UserSecurityAnswer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityQue1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityQue2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityQue3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblStudentDisciplineLeave">
+          <Key>
+            <PropertyRef Name="DiscLeaveID" />
+            <PropertyRef Name="MatricNumber" />
+          </Key>
+          <Property Name="DiscLeaveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatricNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SessSemester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblStudentCourseExempt">
+          <Key>
+            <PropertyRef Name="StudCourseExemptID" />
+            <PropertyRef Name="MatricNumber" />
+          </Key>
+          <Property Name="StudCourseExemptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatricNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblAuditTray">
+          <Key>
+            <PropertyRef Name="AuditID" />
+            <PropertyRef Name="StaffNumber" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionPerformed" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DatePerformed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Desccription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblDept">
+          <Key>
+            <PropertyRef Name="DeptID" />
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeptName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RPMSModelStoreContainer" CdmEntityContainer="RPMSEntities">
+          <EntitySetMapping Name="AuditLog">
+            <EntityTypeMapping TypeName="RPMSModel.AuditLog">
+              <MappingFragment StoreEntitySet="AuditLog">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="AuditDateTime" ColumnName="AuditDateTime" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="IDName" ColumnName="IDName" />
+                <ScalarProperty Name="OldData" ColumnName="OldData" />
+                <ScalarProperty Name="NewData" ColumnName="NewData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchoolDetails">
+            <EntityTypeMapping TypeName="RPMSModel.tblSchoolDetails">
+              <MappingFragment StoreEntitySet="tblSchoolDetails">
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="RPMSModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UpdatePassword" ColumnName="UpdatePassword" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFaculty">
+            <EntityTypeMapping TypeName="RPMSModel.tblFaculty">
+              <MappingFragment StoreEntitySet="tblFaculty">
+                <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFacultyType">
+            <EntityTypeMapping TypeName="RPMSModel.tblFacultyType">
+              <MappingFragment StoreEntitySet="tblFacultyType">
+                <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+                <ScalarProperty Name="FacultyTypeID" ColumnName="FacultyTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFacultyTemp">
+            <EntityTypeMapping TypeName="RPMSModel.tblFacultyTemp">
+              <MappingFragment StoreEntitySet="tblFacultyTemp">
+                <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeptTemp">
+            <EntityTypeMapping TypeName="RPMSModel.tblDeptTemp">
+              <MappingFragment StoreEntitySet="tblDeptTemp">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMajor">
+            <EntityTypeMapping TypeName="RPMSModel.tblMajor">
+              <MappingFragment StoreEntitySet="tblMajor">
+                <ScalarProperty Name="MajorID" ColumnName="MajorID" />
+                <ScalarProperty Name="DegreeAwarded" ColumnName="DegreeAwarded" />
+                <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+                <ScalarProperty Name="MajorCode" ColumnName="MajorCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCourses">
+            <EntityTypeMapping TypeName="RPMSModel.tblCourses">
+              <MappingFragment StoreEntitySet="tblCourses">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCoursesTemp">
+            <EntityTypeMapping TypeName="RPMSModel.tblCoursesTemp">
+              <MappingFragment StoreEntitySet="tblCoursesTemp">
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMajorTemp">
+            <EntityTypeMapping TypeName="RPMSModel.tblMajorTemp">
+              <MappingFragment StoreEntitySet="tblMajorTemp">
+                <ScalarProperty Name="DegreeAwarded" ColumnName="DegreeAwarded" />
+                <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+                <ScalarProperty Name="MajorCode" ColumnName="MajorCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGradingSystem">
+            <EntityTypeMapping TypeName="RPMSModel.tblGradingSystem">
+              <MappingFragment StoreEntitySet="tblGradingSystem">
+                <ScalarProperty Name="GradingSystemID" ColumnName="GradingSystemID" />
+                <ScalarProperty Name="GradingSystem" ColumnName="GradingSystem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGrading">
+            <EntityTypeMapping TypeName="RPMSModel.tblGrading">
+              <MappingFragment StoreEntitySet="tblGrading">
+                <ScalarProperty Name="GradePassed" ColumnName="GradePassed" />
+                <ScalarProperty Name="GradeLetter" ColumnName="GradeLetter" />
+                <ScalarProperty Name="GradePoint" ColumnName="GradePoint" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="GradingSystemTypeID" ColumnName="GradingSystemTypeID" />
+                <ScalarProperty Name="GradingSystemType" ColumnName="GradingSystemType" />
+                <ScalarProperty Name="GradingID" ColumnName="GradingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevel">
+            <EntityTypeMapping TypeName="RPMSModel.tblLevel">
+              <MappingFragment StoreEntitySet="tblLevel">
+                <ScalarProperty Name="WillReturn" ColumnName="WillReturn" />
+                <ScalarProperty Name="IsAbsent" ColumnName="IsAbsent" />
+                <ScalarProperty Name="LevelOrder" ColumnName="LevelOrder" />
+                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+                <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNation">
+            <EntityTypeMapping TypeName="RPMSModel.tblNation">
+              <MappingFragment StoreEntitySet="tblNation">
+                <ScalarProperty Name="NationCode" ColumnName="NationCode" />
+                <ScalarProperty Name="Nation" ColumnName="Nation" />
+                <ScalarProperty Name="NationID" ColumnName="NationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblState">
+            <EntityTypeMapping TypeName="RPMSModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="NationName" ColumnName="NationName" />
+                <ScalarProperty Name="Statename" ColumnName="Statename" />
+                <ScalarProperty Name="NationCode" ColumnName="NationCode" />
+                <ScalarProperty Name="NationId" ColumnName="NationId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocalGovt">
+            <EntityTypeMapping TypeName="RPMSModel.tblLocalGovt">
+              <MappingFragment StoreEntitySet="tblLocalGovt">
+                <ScalarProperty Name="NationName" ColumnName="NationName" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="LocalGovt" ColumnName="LocalGovt" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="LocalGovtID" ColumnName="LocalGovtID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMaritalStatus">
+            <EntityTypeMapping TypeName="RPMSModel.tblMaritalStatus">
+              <MappingFragment StoreEntitySet="tblMaritalStatus">
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="MaritalID" ColumnName="MaritalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSession">
+            <EntityTypeMapping TypeName="RPMSModel.tblSession">
+              <MappingFragment StoreEntitySet="tblSession">
+                <ScalarProperty Name="SessionEndDate" ColumnName="SessionEndDate" />
+                <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="SessionOrder" ColumnName="SessionOrder" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStaffRank">
+            <EntityTypeMapping TypeName="RPMSModel.tblStaffRank">
+              <MappingFragment StoreEntitySet="tblStaffRank">
+                <ScalarProperty Name="StaffRank" ColumnName="StaffRank" />
+                <ScalarProperty Name="StaffRankID" ColumnName="StaffRankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPosition">
+            <EntityTypeMapping TypeName="RPMSModel.tblPosition">
+              <MappingFragment StoreEntitySet="tblPosition">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSemester">
+            <EntityTypeMapping TypeName="RPMSModel.tblSemester">
+              <MappingFragment StoreEntitySet="tblSemester">
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSessionSemester">
+            <EntityTypeMapping TypeName="RPMSModel.tblSessionSemester">
+              <MappingFragment StoreEntitySet="tblSessionSemester">
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="SessionSemester" ColumnName="SessionSemester" />
+                <ScalarProperty Name="SessionSemesterID" ColumnName="SessionSemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="RPMSModel.tblRoles">
+              <MappingFragment StoreEntitySet="tblRoles">
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="RPMSModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="SecurityQueCreated" ColumnName="SecurityQueCreated" />
+                <ScalarProperty Name="LinkActivated" ColumnName="LinkActivated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LinkExpirationDate" ColumnName="LinkExpirationDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="UpdatePassword" ColumnName="UpdatePassword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConfig">
+            <EntityTypeMapping TypeName="RPMSModel.tblConfig">
+              <MappingFragment StoreEntitySet="tblConfig">
+                <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+                <ScalarProperty Name="BodyHtml" ColumnName="BodyHtml" />
+                <ScalarProperty Name="EnableSSL" ColumnName="EnableSSL" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="EmailHost" ColumnName="EmailHost" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStaffRole">
+            <EntityTypeMapping TypeName="RPMSModel.tblStaffRole">
+              <MappingFragment StoreEntitySet="tblStaffRole">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="StaffRoleID" ColumnName="StaffRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAssignCoursesCoordinator">
+            <EntityTypeMapping TypeName="RPMSModel.tblAssignCoursesCoordinator">
+              <MappingFragment StoreEntitySet="tblAssignCoursesCoordinator">
+                <ScalarProperty Name="SemesterSession" ColumnName="SemesterSession" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="AssignCourseID" ColumnName="AssignCourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSecurityQuestionList">
+            <EntityTypeMapping TypeName="RPMSModel.tblSecurityQuestionList">
+              <MappingFragment StoreEntitySet="tblSecurityQuestionList">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="SecurityQuestionID" ColumnName="SecurityQuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserSecurityAnswer">
+            <EntityTypeMapping TypeName="RPMSModel.tblUserSecurityAnswer">
+              <MappingFragment StoreEntitySet="tblUserSecurityAnswer">
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="SecurityQue3" ColumnName="SecurityQue3" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="SecurityQue2" ColumnName="SecurityQue2" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="SecurityQue1" ColumnName="SecurityQue1" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="UserSecurityAnswer" ColumnName="UserSecurityAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatus">
+            <EntityTypeMapping TypeName="RPMSModel.tblStatus">
+              <MappingFragment StoreEntitySet="tblStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudentDisciplineLeave">
+            <EntityTypeMapping TypeName="RPMSModel.tblStudentDisciplineLeave">
+              <MappingFragment StoreEntitySet="tblStudentDisciplineLeave">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SessSemester" ColumnName="SessSemester" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MatricNumber" ColumnName="MatricNumber" />
+                <ScalarProperty Name="DiscLeaveID" ColumnName="DiscLeaveID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudentCourseExempt">
+            <EntityTypeMapping TypeName="RPMSModel.tblStudentCourseExempt">
+              <MappingFragment StoreEntitySet="tblStudentCourseExempt">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="MatricNumber" ColumnName="MatricNumber" />
+                <ScalarProperty Name="StudCourseExemptID" ColumnName="StudCourseExemptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAuditTray">
+            <EntityTypeMapping TypeName="RPMSModel.tblAuditTray">
+              <MappingFragment StoreEntitySet="tblAuditTray">
+                <ScalarProperty Name="Desccription" ColumnName="Desccription" />
+                <ScalarProperty Name="DatePerformed" ColumnName="DatePerformed" />
+                <ScalarProperty Name="ActionPerformed" ColumnName="ActionPerformed" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDept">
+            <EntityTypeMapping TypeName="RPMSModel.tblDept">
+              <MappingFragment StoreEntitySet="tblDept">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="FacultyType" ColumnName="FacultyType" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

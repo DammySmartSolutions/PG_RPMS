@@ -1,0 +1,6 @@
+Dept Code,Dept Name,DeptID,Faculty Name,Course Code,Course Name
+MAT,MATHEMATICAL SCIENCES,7,SCIENCE,MAT101,Elementary Mathematics I
+MAT,MATHEMATICAL SCIENCES,7,SCIENCE,STA101,Elementary Statistics
+PHY,PHYSICS,8,SCIENCE,PHY151,Experimental Physics I
+PHY,PHYSICS,8,SCIENCE,PHY101,General Physics I
+PLS,PLANT SCIENCES,6,SCIENCE,BIO104,Protist and Animal Diversity
